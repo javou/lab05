@@ -2,7 +2,7 @@ package pt.c40task.l05wumpus;
 
 public class Montador {
 	private Caverna caverna;
-	private Componente componente; // trocar por variável local?
+	private Componente componente; // trocar por variável local de criarComponente?
 	
 	
 	public Montador(String[][] estadoInicial) {
