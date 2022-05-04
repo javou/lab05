@@ -1,14 +1,8 @@
 package pt.c40task.l05wumpus;
 
 public class Sala {
-	Componente componente;
 
-	public Componente getComponente() {
-		return componente;
-	}
+	private Componente[] componentes;
+	private boolean jaPassou = false; 
 
-	public void setComponente(Componente componente) {
-		this.componente = componente;
-	}
-	
 }
