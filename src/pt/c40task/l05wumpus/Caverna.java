@@ -4,6 +4,7 @@ public class Caverna {
 	private Sala[][] salas = new Sala[4][4];
 	
 	public void incluirComponente(Componente componente) {
+		salas[componente.getLinha()][componente.getLinha()].adicionarComponente(componente);
 		// adiciona componente na sala de mesmas coordenadas.
 	}
 	

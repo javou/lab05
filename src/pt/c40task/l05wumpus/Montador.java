@@ -1,31 +1,42 @@
 package pt.c40task.l05wumpus;
+import java.util.*;
 
 public class Montador {
 	private Caverna caverna;
-	private Componente[] componentes;
+	private Componente componente;
+	
 	
 	public Montador(String[][] estadoInicial) {
 		caverna = new Caverna();
-		for (int i = 0; i < estadoInicial.length; i++) { // implementar verificações.
+		
+		for (int i = 0; i < estadoInicial.length; i++) { // implementar verificaï¿½ï¿½es.
 			int linha = Integer.parseInt(estadoInicial[i][0]);
 			int coluna = Integer.parseInt(estadoInicial[i][1]);
 			char tipo = estadoInicial[i][2].charAt(0);
-			if (tipo == 'B') {
-				Componente componente = new Buraco(linha, coluna);
-				// append componente na lista componentes.
-			} else if (tipo == 'W') {
-				Componente componente = new Wumpus(linha, coluna);
-				// append componente na lista componentes.
-			} else if (tipo == 'P') {
-				Componente componente = new Heroi(linha, coluna);
-				// append componente na lista componentes.
-			} else if (tipo == 'O') {
-				Componente componente = new Ouro(linha, coluna);
-				// append componente na lista componentes.
-			}
+			criarComponente(coluna, linha, tipo);
+			componente.conecta(caverna); // criar atributo estï¿½tico Caverna caverna em Componente, assim como os mï¿½todos conecta(Caverna caverna) e getCaverna();
+			componente.getCaverna().incluirComponente(componente);
 		}
-		Componente.conecta(caverna); // criar atributo estático Caverna caverna em Componente, assim como os métodos conecta(Caverna caverna) e getCaverna();
-		for (int i = 0; i < componentes.length; i++)
-			componentes[i].getCaverna().incluirComponente(componentes[i]);
+	}
+	
+	public void criarComponente(int coluna, int linha, char tipo) {
+		if (tipo == 'B') {
+			componente = new Buraco(coluna, linha);
+			// append componente na lista componentes.
+		} else if (tipo == 'W') {
+			componente = new Wumpus(coluna, linha);
+			
+			// append componente na lista componentes.
+		} else if (tipo == 'P') {
+			componente = new Heroi(coluna, linha);
+			
+			// append componente na lista componentes.
+		} else if (tipo == 'O') {
+			componente = new Ouro(coluna, linha);
+			// append componente na lista componentes.
+		}
+	}
+	public void definirBrisaFedor() {
+		
 	}
 }
