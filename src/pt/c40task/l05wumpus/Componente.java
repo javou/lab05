@@ -1,19 +1,25 @@
 package pt.c40task.l05wumpus;
 
 public class Componente {
-	//private char id;//Herói: “P” Wumpus: “W” Buraco: “B” Ouro: “O” Fedor: “f” Brisa: “b”
+	//private char id;//HerÃ³i: â€œPâ€� Wumpus: â€œWâ€� Buraco: â€œBâ€� Ouro: â€œOâ€� Fedor: â€œfâ€� Brisa: â€œbâ€�
 	
-	protected int pontos;//indica quantos pontos o componente vale. se não aplicável, ele vale zero
+	protected int pontos = 0; //indica quantos pontos o componente vale. se nÃ£o aplicÃ¡vel, ele vale zero
 	protected int linha, coluna;
-	protected Caverna caverna;
+	protected Caverna caverna; // trocar por variável estática?
+	
 	public Componente(int coluna,int linha) {
 		this.linha = linha;
 		this.coluna = coluna;
-		
 	}
-	public void conecta (Caverna caverna) {
+	
+	public void conecta(Caverna caverna) {
 		this.caverna = caverna;
 	}
+	
+	public void solicitarCaverna() { // solicita que caverna inclua este componente na sala de respectivas coordenadas.
+		caverna.incluirComponente(this);
+	}
+	
 	public Caverna getCaverna() {
 		return caverna;
 	}
