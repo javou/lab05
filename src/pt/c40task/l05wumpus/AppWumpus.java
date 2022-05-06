@@ -11,6 +11,7 @@ public class AppWumpus {
    
    public static void executaJogo(String arquivoCaverna, String arquivoSaida,
                                   String arquivoMovimentos) {
+	  
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       
       String cave[][] = tk.retrieveCave();
@@ -20,6 +21,9 @@ public class AppWumpus {
             System.out.print(cave[l][c] + ((c < cave[l].length-1) ? ", " : ""));
          System.out.println();
       }
+      Montador montador = new Montador(cave);
+     System.out.println(montador.getCaverna()); 
+      
       
       String movements = tk.retrieveMovements();
       System.out.println("=== Movimentos");

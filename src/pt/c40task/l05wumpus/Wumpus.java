@@ -5,9 +5,6 @@ public class Wumpus extends Componente {
 	public Wumpus(int coluna, int linha) {
 		super(coluna, linha);
 		this.pontos = 500;
-	}
-	
-	public void criarFedor() {
 		if (linha - 1 >= 0) {
 			Componente fedor = new Fedor(coluna, linha - 1);
 			fedor.conecta(caverna);
@@ -32,5 +29,6 @@ public class Wumpus extends Componente {
 			fedor.solicitarCaverna();
 		}
 	}
+
 
 }
