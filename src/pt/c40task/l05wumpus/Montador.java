@@ -1,6 +1,7 @@
 package pt.c40task.l05wumpus;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class Montador {
 	private Caverna caverna;
@@ -10,12 +11,11 @@ public class Montador {
 		//a caverna irá ser criada somente se a entrada for válida
 		if (verificarEntrada(estadoInicial)) {
 			caverna = new Caverna();
-			
-			for (int i = 0; i < estadoInicial[0].length; i++) {
-				
+			for (int i = 0; i < estadoInicial.length; i++) {
 				int linha = Integer.parseInt(estadoInicial[i][0]);
 				int coluna = Integer.parseInt(estadoInicial[i][1]);
 				char tipo = estadoInicial[i][2].charAt(0);
+				System.out.println(tipo);
 				if(tipo != '_')
 					criarComponente(coluna - 1, linha - 1, tipo, caverna);  // linha e coluna iniciam no 1 no arquivo de entrada. Logo o index 0 no programa, representa posição 1.
 			}
@@ -25,8 +25,8 @@ public class Montador {
 	}
 	
 	public boolean verificarEntrada(String[][] estadoInicial) {
-		boolean v1 = false, //jogador está na posição 1
-				v2 = false;//não foram criados mais componentes do que o permitido
+		boolean v1 = false, //jogador está na posição 1?
+				v2 = false;//não foram criados mais componentes do que o permitido?
 		
 		ArrayList<String> lista = new ArrayList<>();
 		for (int i = 0; i < estadoInicial.length; i++) {
@@ -46,16 +46,17 @@ public class Montador {
 	
 	private void criarComponente(int coluna, int linha, char tipo, Caverna caverna) {
 		if (tipo == 'B') {
-			componente = new Buraco(coluna, linha);
+			componente = new Buraco(caverna,coluna, linha);
 			//componente.criarBrisa(); // usar cast? eu criei direto na contrutor buraco.
 		} else if (tipo == 'W') {
-			componente = new Wumpus(coluna, linha);
+			componente = new Wumpus(caverna,coluna, linha);
 			//componente.criarFedor();
 		} else if (tipo == 'P') {
 			componente = new Heroi(coluna, linha);
 		} else if (tipo == 'O') {
 			componente = new Ouro(coluna, linha);
 		}
+		//System.out.println(componente.getClass());
 		componente.conecta(caverna);
 		componente.solicitarCaverna();
 	}
@@ -63,6 +64,50 @@ public class Montador {
 	public Caverna getCaverna() {
 		return caverna;
 	}
+	public char[][] showCaverna() {
+		char cave[][] = {
+		         {'-', '-', '-', '-'},
+		         {'-', '-', '-', '-'},
+		         {'-', '-', '-', '-'},
+		         {'-', '-', '-', '-'}
+		      };
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				//System.out.println(caverna.getSala(j,i).getComponentes().isEmpty());
+				//System.out.println(caverna.getSala(j,i).isJaPassou());
+				if(caverna.getSala(j,i).isJaPassou() && !caverna.getSala(j,i).getComponentes().isEmpty()) {
+					ArrayList<Componente> componentes = caverna.getSala(j,i).getComponentes();
+					Iterator it = componentes.iterator();
+					while(it.hasNext()) {
+						Object c = it.next().getClass();
+						
+						if(c  == Wumpus.class) 
+							cave[i][j] = 'W';
+						else if(c == Ouro.class)
+							cave[i][j] = 'O';
+						else if(c == Buraco.class) 
+							cave[i][j] = 'B';
+						else if(c == Heroi.class) 
+							cave[i][j] = 'P';
+						else if(c == Fedor.class) 
+							cave[i][j] = 'f';
+						else if(c == Brisa.class && cave[i][j] != 'f') 
+							cave[i][j] = 'b';
+						else
+							cave[i][j] = '#';
+							
+					}
+					
+				}
+				System.out.print(cave[i][j]);
+				
+			}
+			System.out.println();
+		}
+		
+		return cave;
+	}
+	
 	
 	
 }

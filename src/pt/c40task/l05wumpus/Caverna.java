@@ -5,16 +5,20 @@ public class Caverna {
 	
 	Caverna() {
 		salas = new Sala[4][4];
-		System.out.println(salas[0][0]);
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				salas[i][j] = new Sala();
+			}
+		}
+		
 	}
+	
 	public void incluirComponente(Componente componente) {
 		salas[componente.getLinha()][componente.getColuna()].adicionarComponente(componente);
-		
 		if(componente.getClass() == Heroi.class) {
 			salas[componente.getLinha()][componente.getColuna()].setJaPassou(true);
 		}
 		// adiciona componente na sala de mesmas coordenadas.
-		
 	}
 	public char[][] estadoCaverna() {
 		char[][] caverna = new char[4][4];
@@ -25,12 +29,11 @@ public class Caverna {
 				}
 			}
 		}
-		        
-		
 		return caverna;
-		
+	}
+	public Sala getSala(int coluna, int linha) {
+		return salas[linha][coluna];
 	}
 	public void moverComponente() {
-		
 	}
 }

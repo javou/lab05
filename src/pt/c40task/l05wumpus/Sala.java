@@ -1,5 +1,4 @@
 package pt.c40task.l05wumpus;
-
 import java.util.ArrayList;
 
 public class Sala {
@@ -8,7 +7,7 @@ public class Sala {
 	
 	public Sala(){
 		componentes = new ArrayList<Componente>();
-		jaPassou = false;
+		jaPassou = true;
 	}
 	
 	public void adicionarComponente(Componente componente) {
@@ -22,6 +21,11 @@ public class Sala {
 	public void setJaPassou(boolean jaPassou) {
 		this.jaPassou = jaPassou;
 	}
+
+	public ArrayList<Componente> getComponentes() {
+		return componentes;
+	}
+	
 
 
 	
