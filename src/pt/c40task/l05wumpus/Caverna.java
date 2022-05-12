@@ -20,6 +20,11 @@ public class Caverna {
 		}
 		// adiciona componente na sala de mesmas coordenadas.
 	}
+	
+	public void removerComponente(int coluna, int linha, Componente componente) {
+		salas[linha][coluna].removerComponente(componente);
+	}
+	
 	public char[][] estadoCaverna() {
 		char[][] caverna = new char[4][4];
 		for(int i = 0; i < 4; i++){

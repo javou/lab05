@@ -13,6 +13,10 @@ public class Sala {
 	public void adicionarComponente(Componente componente) {
 		this.componentes.add(componente);
 	}
+	
+	public void removerComponente(Componente componente) {
+		componentes.remove(componente);
+	}
 
 	public boolean isJaPassou() {
 		return jaPassou;

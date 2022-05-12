@@ -46,11 +46,9 @@ public class Montador {
 	
 	private void criarComponente(int coluna, int linha, char tipo, Caverna caverna) {
 		if (tipo == 'B') {
-			componente = new Buraco(caverna,coluna, linha);
-			//componente.criarBrisa(); // usar cast? eu criei direto na contrutor buraco.
+			componente = new Buraco(caverna,coluna, linha); // Brisas estão sendo criadas no construtor
 		} else if (tipo == 'W') {
-			componente = new Wumpus(caverna,coluna, linha);
-			//componente.criarFedor();
+			componente = new Wumpus(caverna,coluna, linha); // Fedor está sendo criado no construtor
 		} else if (tipo == 'P') {
 			componente = new Heroi(coluna, linha);
 		} else if (tipo == 'O') {

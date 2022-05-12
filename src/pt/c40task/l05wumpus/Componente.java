@@ -5,7 +5,7 @@ public class Componente {
 	
 	protected int pontos = 0; //indica quantos pontos o componente vale. se nÃ£o aplicÃ¡vel, ele vale zero
 	protected int linha, coluna;
-	protected Caverna caverna; // trocar por variável estática?
+	protected Caverna caverna;
 	
 	public Componente(int coluna,int linha) {
 		this.linha = linha;
