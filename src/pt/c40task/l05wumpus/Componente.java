@@ -2,10 +2,13 @@ package pt.c40task.l05wumpus;
 
 public class Componente {
 	//private char id;//HerÃ³i: â€œPâ€� Wumpus: â€œWâ€� Buraco: â€œBâ€� Ouro: â€œOâ€� Fedor: â€œfâ€� Brisa: â€œbâ€�
-	
-	protected int pontos = 0; //indica quantos pontos o componente vale. se nÃ£o aplicÃ¡vel, ele vale zero
+
 	protected int linha, coluna;
-	protected Caverna caverna;
+	protected Caverna caverna; 
+	// removi pontos como sendo um atributo de componente. Seria necessário somar o valor de pontos da sala destino sempre que o herói se movesse.
+	// Porém, o herói não tem acesso direto aos componentes da sala destino, causando muito trabalho. Além disso, o Wumpus pode valer tanto 500 quanto -1000.
+	// E se houvesse, por exemplo, brisa e ouro na mesma sala?
+	// Pontos virou um atributo de herói.
 	
 	public Componente(int coluna,int linha) {
 		this.linha = linha;
@@ -22,10 +25,6 @@ public class Componente {
 	
 	public Caverna getCaverna() {
 		return caverna;
-	}
-	
-	public int getPontos() {
-		return pontos;
 	}
 	
 	public int getLinha() {

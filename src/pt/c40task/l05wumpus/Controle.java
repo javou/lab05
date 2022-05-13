@@ -8,16 +8,19 @@ public class Controle {
 	}
 
 	public void comando(char comando) {
-		if (comando == 'w' || comando == 'a' || comando == 's' || comando == 'd')
+		if (comando == 'w' || comando == 'a' || comando == 's' || comando == 'd') {
 			heroi.mover(comando);
-		else if (comando == 'k') {
-			//equipar flecha
+		}
+		else if (comando == 'k') { // pontos são perdidos ao equipar, ou ao atirar?
+			heroi.equiparFlecha();
 		}
 		else if (comando == 'c') {
-			// capturar ouro
+			heroi.capturarOuro();
 		}		
 		else if (comando == 'q') {
-			//sair do jogo
+			System.exit(0); // mudar?
 		}
 	}
+	
+	// como tratar impressão?
 }

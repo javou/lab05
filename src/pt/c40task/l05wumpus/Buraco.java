@@ -4,7 +4,6 @@ public class Buraco extends Componente {
 
 	public Buraco(Caverna caverna, int coluna, int linha) {
 		super(coluna, linha);
-		this.pontos = -1000;
 		if (linha - 1 >= 0) {
 			Componente brisa = new Brisa(coluna, linha - 1);
 			brisa.conecta(caverna);
