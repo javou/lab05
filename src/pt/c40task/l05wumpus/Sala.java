@@ -8,7 +8,7 @@ public class Sala {
 	
 	public Sala(){
 		componentes = new ArrayList<Componente>();
-		jaPassou = true;
+		jaPassou = false;
 	}
 	
 	public void adicionarComponente(Componente componente) {

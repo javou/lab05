@@ -23,13 +23,13 @@ public class AppWumpus {
       }
       Montador montador = new Montador(cave);    
       String movements = tk.retrieveMovements();
-      //Controle controle = new Controle();
+      Controle controle = new Controle(montador.getCaverna().getHeroi());
       movements = "";
       if(movements.isEmpty()) {
     	  char comando = lerTeclado();
-    	  System.out.println(comando);
     	  while (comando!= 'q') {
-    		  //controle.comando(movements.charAt(0));
+    		  controle.comando(comando);
+    		  informarJogador(montador, tk);
     		  comando = lerTeclado();
     	  }  
       }
@@ -91,6 +91,13 @@ public class AppWumpus {
 		   status = 'n';
 	   else
 		   status = 'x';
+	   System.out.println("Items:");
+	   System.out.println("- Número de flechas: " + Integer.toString(heroi.getAljava()));
+	   if(heroi.isOuro())
+		   	System.out.println("- Barras de ouro");
+	   if(heroi.isFlechaEquipada())
+		   	System.out.println("- Flecha equipada");
+	   
 	   return status;
    }
    

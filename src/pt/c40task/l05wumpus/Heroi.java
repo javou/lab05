@@ -16,6 +16,13 @@ public class Heroi extends Componente {
 		return pontos;
 	}
 	
+	
+	public boolean isFlechaEquipada() {
+		return flechaEquipada;
+	}
+	public int getAljava() {
+		return aljava;
+	}
 	public void mover(char direcao) {
 		if (direcao == 'w') {
 			if (linha != 0) {
@@ -52,6 +59,7 @@ public class Heroi extends Componente {
 		if (aljava > 0) {
 			aljava--;
 			flechaEquipada = true;
+			
 		}
 	}
 	
@@ -73,6 +81,7 @@ public class Heroi extends Componente {
 		flechaEquipada = false;
 		Sala sala = caverna.getSala(coluna, linha);
 		if (sala.contemWumpus()) {
+			System.out.println("ATIREIIII");
 			Random rngesus = new Random();
 			if (rngesus.nextBoolean() == true) {
 				sala.removerWumpus();
