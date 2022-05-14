@@ -11,16 +11,18 @@ public class Controle {
 		if (comando == 'w' || comando == 'a' || comando == 's' || comando == 'd') {
 			heroi.mover(comando);
 		}
-		else if (comando == 'k') { // pontos são perdidos ao equipar, ou ao atirar?
+		else if (comando == 'k') { // pontos sï¿½o perdidos ao equipar, ou ao atirar?
 			heroi.equiparFlecha();
 		}
 		else if (comando == 'c') {
 			heroi.capturarOuro();
 		}		
-		else if (comando == 'q') {
+		/*tratado na main()
+		 * 
+		 * else if (comando == 'q') {
 			System.exit(0); // mudar?
-		}
+		}*/
 	}
 	
-	// como tratar impressão?
+	// como tratar impressï¿½o?
 }

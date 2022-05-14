@@ -10,6 +10,7 @@ public class Componente {
 	// E se houvesse, por exemplo, brisa e ouro na mesma sala?
 	// Pontos virou um atributo de herói.
 	
+	
 	public Componente(int coluna,int linha) {
 		this.linha = linha;
 		this.coluna = coluna;
@@ -42,4 +43,5 @@ public class Componente {
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
+
 }

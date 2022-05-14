@@ -5,12 +5,13 @@ public class Heroi extends Componente {
 	private boolean ouro = false;
 	private boolean flechaEquipada = false;
 	private int aljava = 1;
-	private int pontos = 0;
+	private int pontos;
+	private boolean estouVivo = true;
 
 	public Heroi(int coluna, int linha) {
 		super(coluna, linha);
+		pontos = 0;
 	}
-	
 	public int getPontos() {
 		return pontos;
 	}
@@ -54,12 +55,13 @@ public class Heroi extends Componente {
 		}
 	}
 	
-	private void acoesSecundarias() { // realiza ações secundárias provenientes de um movimento.
+	private void acoesSecundarias() { // realiza aï¿½ï¿½es secundï¿½rias provenientes de um movimento.
 		pontos -= 15;
-		Sala sala = caverna.getSala(coluna, linha); // posso fazer isso, ou devo criar método em Caverna?
+		Sala sala = caverna.getSala(coluna, linha); // posso fazer isso, ou devo criar mï¿½todo em Caverna?
 		caverna.getSala(coluna, linha).setJaPassou(true);
 		if (sala.contemBuraco() || (flechaEquipada == false && sala.contemWumpus())) {
 			pontos -= 1000;
+			estouVivo = false;
 			// fim de jogo.
 		}
 		if (flechaEquipada)
@@ -77,6 +79,7 @@ public class Heroi extends Componente {
 				pontos += 500;
 			} else {
 				pontos -= 1000;
+				estouVivo = false;
 				// fim de jogo.
 			}
 		}
@@ -90,4 +93,11 @@ public class Heroi extends Componente {
 			pontos += 1000;
 		}
 	}
+	public boolean isOuro() {
+		return ouro;
+	}
+	public boolean isEstouVivo() {
+		return estouVivo;
+	}
+	
 }

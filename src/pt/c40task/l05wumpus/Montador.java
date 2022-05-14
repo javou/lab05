@@ -62,49 +62,7 @@ public class Montador {
 	public Caverna getCaverna() {
 		return caverna;
 	}
-	public char[][] showCaverna() {
-		char cave[][] = {
-		         {'-', '-', '-', '-'},
-		         {'-', '-', '-', '-'},
-		         {'-', '-', '-', '-'},
-		         {'-', '-', '-', '-'}
-		      };
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				//System.out.println(caverna.getSala(j,i).getComponentes().isEmpty());
-				//System.out.println(caverna.getSala(j,i).isJaPassou());
-				if(caverna.getSala(j,i).isJaPassou() && !caverna.getSala(j,i).getComponentes().isEmpty()) {
-					ArrayList<Componente> componentes = caverna.getSala(j,i).getComponentes();
-					Iterator it = componentes.iterator();
-					while(it.hasNext()) {
-						Object c = it.next().getClass();
-						
-						if(c  == Wumpus.class) 
-							cave[i][j] = 'W';
-						else if(c == Ouro.class)
-							cave[i][j] = 'O';
-						else if(c == Buraco.class) 
-							cave[i][j] = 'B';
-						else if(c == Heroi.class) 
-							cave[i][j] = 'P';
-						else if(c == Fedor.class) 
-							cave[i][j] = 'f';
-						else if(c == Brisa.class && cave[i][j] != 'f') 
-							cave[i][j] = 'b';
-						else
-							cave[i][j] = '#';
-							
-					}
-					
-				}
-				System.out.print(cave[i][j]);
-				
-			}
-			System.out.println();
-		}
-		
-		return cave;
-	}
+
 	
 	
 	

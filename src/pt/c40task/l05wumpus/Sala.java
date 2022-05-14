@@ -1,5 +1,6 @@
 package pt.c40task.l05wumpus;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sala {
 	private ArrayList<Componente> componentes;
@@ -27,7 +28,7 @@ public class Sala {
 		return contem;
 	}
 	
-	public boolean contemOuro() { // é possível fazer um método para substituir esses 3?
+	public boolean contemOuro() { // ï¿½ possï¿½vel fazer um mï¿½todo para substituir esses 3?
 		boolean contem = false;
 		for (int i = 0; i < componentes.size(); i++) {
 			if (componentes.get(i) instanceof Ouro)
@@ -57,7 +58,7 @@ public class Sala {
 		return componentes;
 	}
 	
-	public void removerOuro() { // é possível fazer um método para substituir esses 2?
+	public void removerOuro() { // ï¿½ possï¿½vel fazer um mï¿½todo para substituir esses 2?
 		for (int i = 0; i < componentes.size(); i++) {
 			if (componentes.get(i) instanceof Ouro)
 				componentes.remove(i);
@@ -70,5 +71,24 @@ public class Sala {
 				componentes.remove(i);
 		}
 	}
-	
+	public boolean temFedor() {
+		boolean check = false;
+		for(Componente componente:componentes) {
+			if(componente instanceof Fedor ) {
+				check = true;
+				break;
+			}		
+		}
+		return check;
+	}
+	public boolean temBrisa() {
+		boolean check = false;
+		for(Componente componente:componentes) {
+			if(componente instanceof Brisa ) {
+				check = true;
+				break;
+			}	
+		}
+		return check;
+	}
 }
