@@ -71,6 +71,12 @@ public class Sala {
 				componentes.remove(i);
 		}
 	}
+	public void removerFedor() {
+		for (int i = 0; i < componentes.size(); i++) {
+			if (componentes.get(i) instanceof Fedor)
+				componentes.remove(i);	
+		}
+	}
 	public boolean temFedor() {
 		boolean check = false;
 		for(Componente componente:componentes) {

@@ -81,11 +81,24 @@ public class Heroi extends Componente {
 		flechaEquipada = false;
 		Sala sala = caverna.getSala(coluna, linha);
 		if (sala.contemWumpus()) {
-			System.out.println("ATIREIIII");
+			
 			Random rngesus = new Random();
 			if (rngesus.nextBoolean() == true) {
 				sala.removerWumpus();
 				pontos += 500;
+				if (linha - 1 >= 0) {
+					caverna.getSala(coluna, linha - 1).removerFedor();
+				}
+				
+				if (linha + 1 < 4) {
+					caverna.getSala(coluna, linha + 1).removerFedor();
+				}	
+				if (coluna - 1 >= 0) {
+					caverna.getSala(coluna - 1, linha).removerFedor();
+				}
+				if (coluna + 1 < 4) {
+					caverna.getSala(coluna + 1, linha).removerFedor();
+				}
 			} else {
 				pontos -= 1000;
 				estouVivo = false;
