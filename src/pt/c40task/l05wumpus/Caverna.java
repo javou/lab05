@@ -5,16 +5,15 @@ import java.util.Iterator;
 
 public class Caverna {
 	private Sala[][] salas;
-	private Componente heroi;
+	private Componente heroi; // mudar.
 	
-	Caverna() {
+	public Caverna() {
 		salas = new Sala[4][4];
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
 				salas[i][j] = new Sala();
 			}
 		}
-		
 	}
 	
 	public void incluirComponente(Componente componente) {
@@ -41,10 +40,9 @@ public class Caverna {
 		}
 		return caverna;
 	}
+	
 	public Sala getSala(int coluna, int linha) {
 		return salas[linha][coluna];
-	}
-	public void moverComponente() {
 	}
 	
 	public char[][] showCaverna() {
@@ -78,31 +76,24 @@ public class Caverna {
 						}
 						else if(c == Heroi.class) {
 							cave[i][j] = 'P';
-							
 						}
 						else if(c == Fedor.class && cave[i][j] != 'P') {
-							cave[i][j] = 'f';
-							
+							cave[i][j] = 'f';	
 						}
 						else if(c == Brisa.class && cave[i][j] != 'f' && cave[i][j] != 'P') {
 							cave[i][j] = 'b';
-						}
-						
-							
+						}		
 					}
-					
-					
 				}
 				if(salas[i][j].isJaPassou() && salas[i][j].getComponentes().isEmpty())
 					cave[i][j] = '#';
 				System.out.print(cave[i][j]);
-				
 			}
 			System.out.println();
 		}
-		
 		return cave;
 	}
+	
 	public Componente getHeroi() {
 		return heroi;
 	}

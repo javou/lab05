@@ -11,7 +11,7 @@ public class AppWumpus {
             (args.length > 2) ? args[2] : null);
    }
    
-   public static void executaJogo(String arquivoCaverna, String arquivoSaida,
+   private static void executaJogo(String arquivoCaverna, String arquivoSaida,
                                   String arquivoMovimentos) {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       String cave[][] = tk.retrieveCave();
@@ -24,43 +24,55 @@ public class AppWumpus {
       Montador montador = new Montador(cave);    
       String movements = tk.retrieveMovements();
       Controle controle = new Controle(montador.getCaverna().getHeroi());
-      movements = "";
+      // movements = "";
       
       if(movements.isEmpty()) {
-    	  
     	  informarJogador(montador, tk, true);
     	  char comando = lerTeclado();
-    	  while (comando!= 'q') {
-    		  controle.comando(comando);
+    	  while (comando != 'q') {
+    		  controle.lerComando(comando);
     		  if((checkStatus((Heroi)montador.getCaverna().getHeroi())) == 'x') {
     			  informarJogador(montador, tk, false);
     			  comando = lerTeclado();
-
     		  }
     		  else {
     			  informarJogador(montador, tk, false);
     			  comando = 'q';
-    			  
     		  }
-    			  
     	  }
 		  char status = checkStatus((Heroi)montador.getCaverna().getHeroi());
 	      if(status == 'w') 
-	    	  System.out.println("VocÃª ganhou!");
+	    	  System.out.println("Você ganhou!");
 	      else if(status == 'n')
-	    	  System.out.println("VocÃª perdeu!");
+	    	  System.out.println("Você perdeu!");
 	      else
 	    	  System.out.println("Volte sempre!");
       }
       else {
-    	  //ler movements
-    	  for(int i = 0; i < movements.length(); i++) {
-    		  //controle.comando(movements.charAt(i));
+    	  informarJogador(montador, tk, true);
+    	  char comando, status;
+    	  for (int i = 0; i < movements.length(); i++) {
+    		  status = checkStatus((Heroi)montador.getCaverna().getHeroi());
+    		  if (status == 'w') {
+    			  System.out.println("Você ganhou!");
+    			  break;
+    		  } else if (status == 'n') {
+    			  System.out.println("Você perdeu!");
+    			  break;
+    		  } else {
+    			  comando = movements.charAt(i);
+    			  controle.lerComando(comando);
+    			  if (comando == 'q') { // passar para Controle?
+    				  System.out.println("Volte sempre!");
+    				  break;
+    			  }
+    			  informarJogador(montador, tk, false);
+    		  }
     	  }
-      }
-      
+      }  
    }
-   public static char lerTeclado() {
+   
+   private static char lerTeclado() {
 	   Scanner keyboard = new Scanner(System.in);
 	   String comando = keyboard.nextLine();
 	   char comandoVerificado = ' ';
@@ -75,38 +87,41 @@ public class AppWumpus {
 	   //keyboard.close(); should I close the scanner here???
 	   return comandoVerificado;
    }
-   public static void informarJogador(Montador montador, Toolkit tk, boolean firstboard) {
+   
+   private static void informarJogador(Montador montador, Toolkit tk, boolean firstboard) {
 	      Heroi heroi = (Heroi)montador.getCaverna().getHeroi();
 	      
 	      int score = ((Heroi)montador.getCaverna().getHeroi()).getPontos();
-	      char status = checkStatus((Heroi)montador.getCaverna().getHeroi()); // 'w' para venceu; 'n' para perdeu; 'x' intermediÃ¡rias
+	      char status = checkStatus((Heroi)montador.getCaverna().getHeroi()); // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
 	      int posHeroiColuna = ((Heroi)montador.getCaverna().getHeroi()).getColuna();
 	      int posHeroiLinha = ((Heroi)montador.getCaverna().getHeroi()).getLinha();
 	      if (firstboard) {
-	    	  System.out.println("=== Caverna do Diabo");
+	    	  System.out.println("\n\n=== Caverna do Diabo");
 	    	  firstboard = false;
 	      }
 	      else if(status == 'x')
-	    	  System.out.println( "=== Caverna Intermediaria");
+	    	  System.out.println("\n\n=== Caverna Intermediária");
 	      else 
-	    	  System.out.println("=== Ãšltima caverna");  
+	    	  System.out.println("\n\n=== Última caverna");  
 	      char partialCave[][] = montador.getCaverna().showCaverna();
-	      checkBrisaFedor(montador.getCaverna().getSala(posHeroiColuna,posHeroiLinha ));	  
+	      System.out.println("");
+	      checkBrisaFedor(montador.getCaverna().getSala(posHeroiColuna,posHeroiLinha));	  
 	      tk.writeBoard(partialCave, score, status);
-		  System.out.println("Items:");
+		  System.out.println("Inventário:");
 		  if(heroi.getAljava() > 0)
-		  System.out.println("- NÃºmero de flechas: " + Integer.toString(heroi.getAljava()));
+		  System.out.println("- Flechas: " + Integer.toString(heroi.getAljava()));
 		  if(heroi.isOuro())
-			System.out.println("- Barras de ouro");
+			System.out.println("- Barra de ouro");
+		  System.out.println("");
 		  if(heroi.isFlechaEquipada())
-		  	System.out.println("- Flecha equipada");
+		  	System.out.println("Flecha equipada!");
 		  
 	      //teste
-	      System.out.println(score);
-	      System.out.println(status);   	  
+	      System.out.println("Pontuação: " + score);
+	      System.out.println("Status: " + (status == 'x' ? "Estou vivo." : (status == 'n' ? "Aaaah!" : "Ufa!")));
    }
    
-   public static char checkStatus(Heroi heroi) {
+   private static char checkStatus(Heroi heroi) {
 	   char status;
 	   if(heroi.getColuna() == 0 && heroi.getLinha() == 0 && heroi.isOuro())
 		   status = 'w';
@@ -117,12 +132,12 @@ public class AppWumpus {
 	   return status;
    }
    
-   public static void checkBrisaFedor(Sala sala) {
-	   if(sala.temBrisa() && sala.temFedor())
-		   System.out.println("Sinto uma brisa e um leve cheiro de peido");
-	   else if(sala.temBrisa())
-		   System.out.println("Sinto uma brisa");
-	   else if(sala.temFedor())
-		   System.out.println("Quem peidou?");   
+   private static void checkBrisaFedor(Sala sala) {
+	   if(sala.contemBrisa() && sala.contemFedor())
+		   System.out.println("Sinto uma brisa e um leve cheiro de peido...\n"); // Combinar com status e dar prioridade para isso?
+	   else if(sala.contemBrisa())
+		   System.out.println("Sinto uma brisa...\n");
+	   else if(sala.contemFedor())
+		   System.out.println("Quem peidou?\n");   
    }
 }

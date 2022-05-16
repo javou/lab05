@@ -4,25 +4,28 @@ import java.util.Random;
 public class Heroi extends Componente {
 	private boolean ouro = false;
 	private boolean flechaEquipada = false;
-	private int aljava = 1;
+	private int aljava;
 	private int pontos;
 	private boolean estouVivo = true;
 
 	public Heroi(int coluna, int linha) {
 		super(coluna, linha);
+		aljava = 1;
 		pontos = 0;
 	}
+	
 	public int getPontos() {
 		return pontos;
 	}
 	
-	
 	public boolean isFlechaEquipada() {
 		return flechaEquipada;
 	}
+	
 	public int getAljava() {
 		return aljava;
 	}
+	
 	public void mover(char direcao) {
 		if (direcao == 'w') {
 			if (linha != 0) {
@@ -65,7 +68,7 @@ public class Heroi extends Componente {
 	
 	private void acoesSecundarias() { // realiza a��es secund�rias provenientes de um movimento.
 		pontos -= 15;
-		Sala sala = caverna.getSala(coluna, linha); // posso fazer isso, ou devo criar m�todo em Caverna?
+		Sala sala = caverna.getSala(coluna, linha);
 		caverna.getSala(coluna, linha).setJaPassou(true);
 		if (sala.contemBuraco() || (flechaEquipada == false && sala.contemWumpus())) {
 			pontos -= 1000;
@@ -86,19 +89,6 @@ public class Heroi extends Componente {
 			if (rngesus.nextBoolean() == true) {
 				sala.removerWumpus();
 				pontos += 500;
-				if (linha - 1 >= 0) {
-					caverna.getSala(coluna, linha - 1).removerFedor();
-				}
-				
-				if (linha + 1 < 4) {
-					caverna.getSala(coluna, linha + 1).removerFedor();
-				}	
-				if (coluna - 1 >= 0) {
-					caverna.getSala(coluna - 1, linha).removerFedor();
-				}
-				if (coluna + 1 < 4) {
-					caverna.getSala(coluna + 1, linha).removerFedor();
-				}
 			} else {
 				pontos -= 1000;
 				estouVivo = false;
@@ -115,9 +105,11 @@ public class Heroi extends Componente {
 			pontos += 1000;
 		}
 	}
+	
 	public boolean isOuro() {
 		return ouro;
 	}
+	
 	public boolean isEstouVivo() {
 		return estouVivo;
 	}

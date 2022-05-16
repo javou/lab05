@@ -7,7 +7,7 @@ public class Controle {
 		this.heroi = ((Heroi)heroi);
 	}
 
-	public void comando(char comando) {
+	public void lerComando(char comando) {
 		if (comando == 'w' || comando == 'a' || comando == 's' || comando == 'd') {
 			heroi.mover(comando);
 		}
@@ -17,12 +17,8 @@ public class Controle {
 		else if (comando == 'c') {
 			heroi.capturarOuro();
 		}		
-		/*tratado na main()
-		 * 
-		 * else if (comando == 'q') {
-			System.exit(0); // mudar?
-		}*/
+		// funcionalidade do comando 'q' tratado na main.
 	}
 	
-	// como tratar impress�o?
+	
 }

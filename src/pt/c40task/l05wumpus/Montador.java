@@ -37,7 +37,7 @@ public class Montador {
 		}
 		if(Collections.frequency(lista,"P") == 1 && Collections.frequency(lista,"O") == 1 
 				                 				 && Collections.frequency(lista,"W") == 1
-				                 				 && Collections.frequency(lista,"B") >= 2 //mudar para 2???? mínimo 2 mas a entrada só tem 1
+				                 				 && Collections.frequency(lista,"B") >= 2
 				                 				 && Collections.frequency(lista,"B") <= 3) {
 			v2 = true;
 		}
@@ -62,8 +62,4 @@ public class Montador {
 	public Caverna getCaverna() {
 		return caverna;
 	}
-
-	
-	
-	
 }

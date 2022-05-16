@@ -5,11 +5,6 @@ public class Componente {
 
 	protected int linha, coluna;
 	protected Caverna caverna; 
-	// removi pontos como sendo um atributo de componente. Seria necessário somar o valor de pontos da sala destino sempre que o herói se movesse.
-	// Porém, o herói não tem acesso direto aos componentes da sala destino, causando muito trabalho. Além disso, o Wumpus pode valer tanto 500 quanto -1000.
-	// E se houvesse, por exemplo, brisa e ouro na mesma sala?
-	// Pontos virou um atributo de herói.
-	
 	
 	public Componente(int coluna,int linha) {
 		this.linha = linha;
@@ -32,16 +27,7 @@ public class Componente {
 		return linha;
 	}
 	
-	public void setLinha(int linha) {
-		this.linha = linha;
-	}
-	
 	public int getColuna() {
 		return coluna;
 	}
-	
-	public void setColuna(int coluna) {
-		this.coluna = coluna;
-	}
-
 }
