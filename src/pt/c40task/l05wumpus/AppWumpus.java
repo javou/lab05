@@ -42,9 +42,9 @@ public class AppWumpus {
     	  }
 		  char status = checkStatus((Heroi)montador.getCaverna().getHeroi());
 	      if(status == 'w') 
-	    	  System.out.println("Você ganhou!");
+	    	  System.out.println("VocÃª ganhou!");
 	      else if(status == 'n')
-	    	  System.out.println("Você perdeu!");
+	    	  System.out.println("VocÃª perdeu!");
 	      else
 	    	  System.out.println("Volte sempre!");
       }
@@ -54,10 +54,10 @@ public class AppWumpus {
     	  for (int i = 0; i < movements.length(); i++) {
     		  status = checkStatus((Heroi)montador.getCaverna().getHeroi());
     		  if (status == 'w') {
-    			  System.out.println("Você ganhou!");
+    			  System.out.println("VocÃª ganhou!");
     			  break;
     		  } else if (status == 'n') {
-    			  System.out.println("Você perdeu!");
+    			  System.out.println("VocÃª perdeu!");
     			  break;
     		  } else {
     			  comando = movements.charAt(i);
@@ -92,7 +92,7 @@ public class AppWumpus {
 	      Heroi heroi = (Heroi)montador.getCaverna().getHeroi();
 	      
 	      int score = ((Heroi)montador.getCaverna().getHeroi()).getPontos();
-	      char status = checkStatus((Heroi)montador.getCaverna().getHeroi()); // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
+	      char status = checkStatus((Heroi)montador.getCaverna().getHeroi()); // 'w' para venceu; 'n' para perdeu; 'x' intermediï¿½rias
 	      int posHeroiColuna = ((Heroi)montador.getCaverna().getHeroi()).getColuna();
 	      int posHeroiLinha = ((Heroi)montador.getCaverna().getHeroi()).getLinha();
 	      if (firstboard) {
@@ -100,14 +100,14 @@ public class AppWumpus {
 	    	  firstboard = false;
 	      }
 	      else if(status == 'x')
-	    	  System.out.println("\n\n=== Caverna Intermediária");
+	    	  System.out.println("\n\n=== Caverna IntermediÃ¡ria");
 	      else 
-	    	  System.out.println("\n\n=== Última caverna");  
+	    	  System.out.println("\n\n=== Ãºltima caverna");  
 	      char partialCave[][] = montador.getCaverna().showCaverna();
 	      System.out.println("");
 	      checkBrisaFedor(montador.getCaverna().getSala(posHeroiColuna,posHeroiLinha));	  
 	      tk.writeBoard(partialCave, score, status);
-		  System.out.println("Inventário:");
+		  System.out.println("InventÃ¡rio:");
 		  if(heroi.getAljava() > 0)
 		  System.out.println("- Flechas: " + Integer.toString(heroi.getAljava()));
 		  if(heroi.isOuro())
@@ -117,8 +117,8 @@ public class AppWumpus {
 		  	System.out.println("Flecha equipada!");
 		  
 	      //teste
-	      System.out.println("Pontuação: " + score);
-	      System.out.println("Status: " + (status == 'x' ? "Estou vivo." : (status == 'n' ? "Aaaah!" : "Ufa!")));
+	      System.out.println("PontuaÃ§Ã£o: " + score);
+	      // System.out.println("Status: " + (status == 'x' ? "Estou vivo." : (status == 'n' ? "Aaaah!" : "Ufa!")));
    }
    
    private static char checkStatus(Heroi heroi) {
@@ -134,10 +134,10 @@ public class AppWumpus {
    
    private static void checkBrisaFedor(Sala sala) {
 	   if(sala.contemBrisa() && sala.contemFedor())
-		   System.out.println("Sinto uma brisa e um leve cheiro de peido...\n"); // Combinar com status e dar prioridade para isso?
+		   System.out.println("Status: Sinto uma brisa e um leve cheiro de peido...\n"); 
 	   else if(sala.contemBrisa())
-		   System.out.println("Sinto uma brisa...\n");
+		   System.out.println("Status: Sinto uma brisa...\n");
 	   else if(sala.contemFedor())
-		   System.out.println("Quem peidou?\n");   
+		   System.out.println("Status: Quem peidou?\n");   
    }
 }

@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class Caverna {
 	private Sala[][] salas;
-	private Componente heroi; // mudar.
+	private Componente heroi; // global no app, global no controle, chamar sempre ou global no montador?
 	
 	public Caverna() {
 		salas = new Sala[4][4];
@@ -58,7 +58,7 @@ public class Caverna {
 				//System.out.println(salas[i][j].isJaPassou());
 				if(salas[i][j].isJaPassou() && !salas[i][j].getComponentes().isEmpty()) {
 					ArrayList<Componente> componentes = salas[i][j].getComponentes();
-					Iterator it = componentes.iterator();
+					Iterator<Componente> it = componentes.iterator();
 					while(it.hasNext()) {
 						Object c = it.next().getClass();
 						
