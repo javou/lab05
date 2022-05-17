@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 public class Caverna {
 	private Sala[][] salas;
-	private Componente heroi; // global no app, global no controle, chamar sempre ou global no montador?
 	
 	public Caverna() {
 		salas = new Sala[4][4];
@@ -20,7 +19,6 @@ public class Caverna {
 		salas[componente.getLinha()][componente.getColuna()].adicionarComponente(componente);
 		if(componente.getClass() == Heroi.class) {
 			salas[componente.getLinha()][componente.getColuna()].setJaPassou(true);
-			heroi = componente;
 		}
 		// adiciona componente na sala de mesmas coordenadas.
 	}
@@ -29,7 +27,7 @@ public class Caverna {
 		salas[linha][coluna].removerComponente(componente);
 	}
 	
-	public char[][] estadoCaverna() {
+	public char[][] estadoCaverna() { // remover?
 		char[][] caverna = new char[4][4];
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 4; i++) {
@@ -54,8 +52,6 @@ public class Caverna {
 		      };
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
-				//System.out.println(salas[i][j].getComponentes().isEmpty());
-				//System.out.println(salas[i][j].isJaPassou());
 				if(salas[i][j].isJaPassou() && !salas[i][j].getComponentes().isEmpty()) {
 					ArrayList<Componente> componentes = salas[i][j].getComponentes();
 					Iterator<Componente> it = componentes.iterator();
@@ -92,9 +88,5 @@ public class Caverna {
 			System.out.println();
 		}
 		return cave;
-	}
-	
-	public Componente getHeroi() {
-		return heroi;
 	}
 }

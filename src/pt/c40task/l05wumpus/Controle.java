@@ -11,14 +11,15 @@ public class Controle {
 		if (comando == 'w' || comando == 'a' || comando == 's' || comando == 'd') {
 			heroi.mover(comando);
 		}
-		else if (comando == 'k') { // pontos s�o perdidos ao equipar, ou ao atirar?
+		else if (comando == 'k') {
 			heroi.equiparFlecha();
 		}
 		else if (comando == 'c') {
 			heroi.capturarOuro();
 		}		
-		// funcionalidade do comando 'q' tratado na main.
 	}
 	
-	
+	public Heroi getHeroi() {
+		return heroi;
+	}
 }

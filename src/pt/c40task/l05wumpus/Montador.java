@@ -1,11 +1,9 @@
 package pt.c40task.l05wumpus;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 public class Montador {
 	private Caverna caverna;
-	private Componente componente; // trocar por vari�vel local de criarComponente?
 	
 	public Montador(String[][] estadoInicial) {
 		//a caverna irá ser criada somente se a entrada for válida
@@ -45,16 +43,16 @@ public class Montador {
 	}
 	
 	private void criarComponente(int coluna, int linha, char tipo, Caverna caverna) {
+		Componente componente = null; // temos a garantia do tipo no método verificarEntrada.
 		if (tipo == 'B') {
-			componente = new Buraco(caverna,coluna, linha); // Brisas estão sendo criadas no construtor
+			componente = new Buraco(caverna,coluna, linha); // Brisas estão sendo criadas no construtor de Buraco.
 		} else if (tipo == 'W') {
-			componente = new Wumpus(caverna,coluna, linha); // Fedor está sendo criado no construtor
+			componente = new Wumpus(caverna,coluna, linha); // Fedor está sendo criado no construtor de Wumpus.
 		} else if (tipo == 'P') {
 			componente = new Heroi(coluna, linha);
 		} else if (tipo == 'O') {
 			componente = new Ouro(coluna, linha);
 		}
-		//System.out.println(componente.getClass());
 		componente.conecta(caverna);
 		componente.solicitarCaverna();
 	}

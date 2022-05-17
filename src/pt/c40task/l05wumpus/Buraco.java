@@ -4,6 +4,7 @@ public class Buraco extends Componente {
 
 	public Buraco(Caverna caverna, int coluna, int linha) {
 		super(coluna, linha);
+		// Cria brisa nas salas adjacentes válidas.
 		if (linha - 1 >= 0) {
 			Componente brisa = new Brisa(coluna, linha - 1);
 			brisa.conecta(caverna);

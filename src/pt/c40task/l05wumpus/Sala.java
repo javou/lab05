@@ -1,6 +1,5 @@
 package pt.c40task.l05wumpus;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Sala {
 	private ArrayList<Componente> componentes;
@@ -19,7 +18,7 @@ public class Sala {
 		componentes.remove(componente);
 	}
 	
-	public boolean contemBuraco() { // � poss�vel fazer um m�todo para substituir esses 5?
+	public boolean contemBuraco() {
 		boolean contem = false;
 		for (int i = 0; i < componentes.size(); i++) {
 			if (componentes.get(i) instanceof Buraco)
@@ -68,7 +67,7 @@ public class Sala {
 		return check;
 	}
 	
-	public void removerOuro() { // � poss�vel fazer um m�todo para substituir esses 3?
+	public void removerOuro() {
 		for (int i = 0; i < componentes.size(); i++) {
 			if (componentes.get(i) instanceof Ouro)
 				componentes.remove(i);
@@ -103,6 +102,15 @@ public class Sala {
 			if (componentes.get(i) instanceof Fedor)
 				componentes.remove(i);	
 		}
+	}
+	
+	public Heroi getHeroi() { // temos a garantia que, na posição (0, 0) no início do jogo, onde essa função é chamada, sempre será devolvido um herói (ver método verificarEntrada de Montador).
+		for (int i = 0; i < componentes.size(); i++) {
+			Componente elemento = componentes.get(i);
+			if (elemento instanceof Heroi)
+				return (Heroi)elemento;
+		}
+		return null;
 	}
 
 	public boolean isJaPassou() {

@@ -31,28 +31,28 @@ public class Heroi extends Componente {
 			if (linha != 0) {
 				caverna.removerComponente(coluna, linha, this);
 				linha--;
-				caverna.incluirComponente(this); // isso ou solicitarCaverna()?
+				solicitarCaverna();
 				acoesSecundarias();
 			}
 		} else if (direcao == 'a') {
 			if (coluna != 0) {
 				caverna.removerComponente(coluna, linha, this);
 				coluna--;
-				caverna.incluirComponente(this);
+				solicitarCaverna();
 				acoesSecundarias();
 			}
 		} else if (direcao == 's') {
 			if (linha != 3) {
 				caverna.removerComponente(coluna, linha, this);
 				linha++;
-				caverna.incluirComponente(this);
+				solicitarCaverna();
 				acoesSecundarias();
 			}
 		} else {
 			if (coluna != 3) {
 				caverna.removerComponente(coluna, linha, this);
 				coluna++;
-				caverna.incluirComponente(this);
+				solicitarCaverna();
 				acoesSecundarias();
 			}
 		}
@@ -66,10 +66,10 @@ public class Heroi extends Componente {
 		}
 	}
 	
-	private void acoesSecundarias() { // realiza a��es secund�rias provenientes de um movimento.
+	private void acoesSecundarias() { // realiza ações secundárias provenientes de um movimento.
 		pontos -= 15;
 		Sala sala = caverna.getSala(coluna, linha);
-		caverna.getSala(coluna, linha).setJaPassou(true);
+		sala.setJaPassou(true);
 		if (sala.contemBuraco() || (flechaEquipada == false && sala.contemWumpus())) {
 			pontos -= 1000;
 			estouVivo = false;
@@ -84,7 +84,6 @@ public class Heroi extends Componente {
 		flechaEquipada = false;
 		Sala sala = caverna.getSala(coluna, linha);
 		if (sala.contemWumpus()) {
-			
 			Random rngesus = new Random();
 			if (rngesus.nextBoolean() == true) {
 				sala.removerWumpus();
