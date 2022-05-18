@@ -71,7 +71,8 @@ public class AppWumpus {
 					  informarJogador(montador, controle, tk, false); // se o último comando não foi q, mostra o estado do jogo para o jogador após executar o comando.
 				  }
 			  }
-		}  
+		} 
+		tk.stop();
 	}
 	
 	private static char lerTeclado() {
