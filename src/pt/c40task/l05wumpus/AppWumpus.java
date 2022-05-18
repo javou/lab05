@@ -2,7 +2,7 @@ package pt.c40task.l05wumpus;
 import java.util.Scanner;
 
 public class AppWumpus {
-	private static Scanner keyboard = new Scanner(System.in); // ?
+	private static Scanner keyboard = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		AppWumpus.executaJogo(
@@ -25,7 +25,7 @@ public class AppWumpus {
 		Montador montador = new Montador(cave);    
 		String movements = tk.retrieveMovements();
 		Controle controle = new Controle(montador.getCaverna().getSala(0, 0).getHeroi());
-		Heroi heroi = controle.getHeroi(); // fazer isso para evitar repetição?
+		Heroi heroi = controle.getHeroi();
 		// movements = ""; // para testar teclado.
 		
 		if(movements.isEmpty()) { // para ler informações do teclado.
